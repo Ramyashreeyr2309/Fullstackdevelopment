@@ -1,7 +1,9 @@
 const express = require("express");
 const nodeapp = express();
 var bodyParser = require('body-parser');
-const userRoutes = require("./api/routes/users");
+const userRoutes = require("./api/routes/user");
+const equipmentsRoutes = require("./api/routes/equipments");
+const requestsRoutes = require("./api/routes/requests");
 
 //const dbConfig = require('./db.config.js');
 
@@ -43,7 +45,9 @@ nodeapp.use((req, res, next) => {
 });
 
 // Routes which should handle requests
-nodeapp.use("/users", userRoutes);
+nodeapp.use("/user", userRoutes);
+nodeapp.use("/equipments", equipmentsRoutes);
+nodeapp.use('/requests',requestsRoutes);
 
 nodeapp.get("/", (req, res, next) => {
   res.status(200).json({
