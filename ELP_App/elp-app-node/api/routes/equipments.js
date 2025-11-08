@@ -59,9 +59,9 @@ router.post("/", async (req, res, next) => {
                 console.error('Error executing parameterized query:', error);
                 return;
             }
-                res.status(201).json({
-                    message: "Equipment has been added successfully"
-                });
+            res.status(201).json({
+                message: "Equipment has been added successfully"
+            });
         });
 });
 
@@ -72,29 +72,37 @@ router.patch("/:eqid", async (req, res, next) => {
         res.status(401).json();
         return;
     }
-  const eqid = parseInt(req.params.eqid);
+    const eqid = parseInt(req.params.eqid);
     const ename = req.body.ename;
     const category = req.body.category;
     const ecndtn = req.body.ecndtn;
-    const quantity = req.body.quantity;
+    const new_quantity = req.body.new_quantity;
+    const old_quantity = req.body.old_quantity;
 
-    db.query('INSERT INTO equipments(ename, category, ecndtn, quantity, availability, aid) VALUES (?, ?, ?, ?, ?, ?)',
-        [ename, category, ecndtn, quantity, quantity, user.user_id], (error, results) => {
+    db.query(`update equipments set 
+        ename=?, 
+        category=?, 
+        ecndtn=?,
+        quantity=greatest(?,?-availability), 
+        availability=availability+(quantity-?),
+        aid=? 
+        where eqid=?`,
+        [ename, category, ecndtn, new_quantity, old_quantity, old_quantity, user.user_id, eqid], (error, results) => {
             if (error) {
                 console.error('Error executing parameterized query:', error);
                 return;
             }
-                res.status(201).json({
-                    message: "Equipment has been added successfully"
-                });
+            res.status(201).json({
+                message: "Equipment has been updated successfully"
+            });
         });
 });
 
 router.delete("/:eqid", async (req, res, next) => {
-  const eqid = parseInt(req.params.eqid);
-  token = req.query.token;
+    const eqid = parseInt(req.params.eqid);
+    token = req.query.token;
     user = await auth(token);
-    if (user == null || user.role!=="admin") {
+    if (user == null || user.role !== "admin") {
         res.status(401).json();
         return;
     }
@@ -104,9 +112,9 @@ router.delete("/:eqid", async (req, res, next) => {
                 console.error('Error executing parameterized query:', error);
                 return;
             }
-                res.status(200).json({
-                    message: "Equipment has been deleted successfully"
-                });
+            res.status(200).json({
+                message: "Equipment has been deleted successfully"
+            });
         });
 
 });
