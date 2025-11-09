@@ -25,7 +25,7 @@
     cursor: pointer;
 }
 
-.category-card {
+.category-eqcard {
     display: flex;
     flex-direction: row;
     border-radius: 8px;
@@ -45,5 +45,5 @@
 
 .eqbutton {
     padding: 20px;
-    
+
 }

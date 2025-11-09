@@ -81,7 +81,7 @@ const Equipmentlist = () => {
                 {/* Map through your data to render the list */}
                 {data.map(item => (
                     <div key={item.id}>
-                        <div className='category-card'>
+                        <div className='category-eqcard'>
                             <div className='header'><h6>{item.ename}</h6></div>
                             <div className='eqbutton'>
                                 {<button onClick={handleReq} >

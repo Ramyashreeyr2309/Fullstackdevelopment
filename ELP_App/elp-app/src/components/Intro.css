@@ -13,6 +13,14 @@
   align-items: center;
   justify-content: center;
 }
+.headerc {
+  width: 10%;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  height: 10px;
+  padding: 0px 0px;
+}
 
 .user-profile {
   display: flex;
@@ -26,9 +34,9 @@
 }
 
 .search-container {
+  padding: 10px 0px;
   display: flex;
   flex-direction: row;
-  padding: 50px 50px;
   border: none;
   cursor: pointer;
   border-radius: 4px;
@@ -40,20 +48,17 @@
 .categories{
   display: flex;
   flex-direction: column;
-  padding: 50px 50px;
   border: none;
   cursor: pointer;
   border-radius: 4px;
   width: 100%;
   align-items: center;
   justify-content: center;
-  object-fit: cover;
 }
 
 .categories-row{
   display: flex;
   flex-direction: row;
-  padding: 10px 10px;
   border: none;
   cursor: pointer;
   border-radius: 4px;
@@ -63,19 +68,25 @@
 }
 
 .category-card{
-  width: 100%;
-  border-radius: 8px;
+  width: 23%;
+  height: 150px;
+  border-radius: 2px;
   overflow: hidden; /* Ensures image corners match card corners */
-  margin: 20px;
+  margin: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   background-color: white;
   transition: transform 0.2s;
   text-align: center;
+  white-space: normal;
+  padding: 2px 2px;
 }
 
 .card-image {
   width: 100%;
-  height: 180px;
+  height: 90px;
   object-fit: cover; /* Ensures images cover the area nicely */
-  padding: 5px;
+}
+
+.list{
+  align-items: center;
 }

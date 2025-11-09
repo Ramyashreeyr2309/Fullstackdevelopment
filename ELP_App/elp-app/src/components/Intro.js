@@ -165,43 +165,41 @@ const Intro = () => {
           <button type="submit" className="search-button">
             Search
           </button>
-          <div onClick={handleListAll}>
-            <button className="search-button">
+            <button className="search-button" onClick={handleListAll}>
               List All
             </button>
-          </div>
         </form>
       </div>
-      {/* <div>
-        <h3>Categories</h3>
-      </div> */}
+      <div>
+        <h3 className='header'>Categories</h3>
+      </div>
       <div className='categories'>
         <div className='categories-row'>
           <div className='category-card' onClick={onClicksports}>
-            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRvGMXpwr-YE24YqeTDf5tIIIsnKvVuzUUAw&s' alt='sports' className="card-image" />
-            <h3>SPORTS</h3>
+            <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRvGMXpwr-YE24YqeTDf5tIIIsnKvVuzUUAw&s' alt='sports' className="card-image" /></div>
+            <div><h4>SPORTS</h4></div>
           </div>
           <div className='category-card' onClick={onClickmusic}>
             <img src='https://thumbs.dreamstime.com/b/musical-instruments-icons-set-22251528.jpg' alt='musical instruments' className="card-image" />
-            <h3>MUSICAL INSTRUMENTS</h3>
+            <h4>MUSICAL INSTRUMENTS</h4>
           </div>
           <div className='category-card' onClick={onClicklab}>
             <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUBCOK24jzKUw7RDFS7OIowGotpte6RLtHlQ&s' alt='lab equipments' className="card-image" />
-            <h3>LAB EQUIPMENTS</h3>
+            <h4>LAB EQUIPMENTS</h4>
           </div>
         </div>
         <div className='categories-row'>
           <div className='category-card' onClick={onClickcameras}>
             <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThbahNLsF4JwCwfv_dzM0HcgmIcfpyUVzOtQ&s' alt='cameras' className="card-image" />
-            <h3>CAMERAS</h3>
+            <h4>CAMERAS</h4>
           </div>
           <div className='category-card' onClick={onClickproject}>
             <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnaxwNxwtOiztsl9N0iGxH2Q-QrwpSMkd9UA&s' alt='project kit' className="card-image" />
-            <h3>PROJECT KITS</h3>
+            <h4>PROJECT KITS</h4>
           </div>
           <div className='category-card' onClick={onClickrequest}>
             <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyBDs1nT_DxBHB6vLLPLJrn2gjoQgJqe2n2g&s' alt='Requests' className="card-image" />
-            <h3>requests</h3>
+            <h4>Requests</h4>
           </div>
         </div>
       </div>
