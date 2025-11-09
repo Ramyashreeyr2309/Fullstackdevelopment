@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../../dbconfig.js'); // Import the connection pool
 const auth = require('../authenticate.js'); // Import Authenticate.js
 
-router.get("/details", async (req, res, next) => {
+router.post("/details", async (req, res, next) => {
     token = req.query.token;
     user = await auth(token);
     if (user == null) {
@@ -24,8 +24,9 @@ router.get("/details", async (req, res, next) => {
         conditions += 'and ename like ? ';
         filters.push("%" + ename + "%");
     }
-    if (availability) {
-        conditions += 'and availability > 0 ';
+    if (availability != null) {
+        if (availability) { conditions += 'and availability > 0 '; }
+        else { conditions += 'and availability = 0 '; }
     }
     if (ecndtn) {
         conditions += 'and ecndtn= ? ';

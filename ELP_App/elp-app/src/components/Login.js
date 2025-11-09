@@ -10,11 +10,10 @@ const Login = ({ onLogin }) => {
   const [error, setError] = useState('');
   const navigate = useNavigate(); // Initialize useNavigate hook
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:4000/user/login', {
+      const response = await fetch('http://localhost:4000/user/session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +22,7 @@ const Login = ({ onLogin }) => {
       });
       const data = await response.json();
       if (response.ok) {
-        onLogin(data.token);
+        onLogin(data);
         navigate('/intro'); // Redirect to intro page upon successful login
       } else {
         setError(data.message);
