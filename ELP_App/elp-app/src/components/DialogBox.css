@@ -4,14 +4,20 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background-color: white;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
 }
 
 
 .overlay {
-  position: fixed; /* Positioning and size */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(128,128,128,0.5); /* color */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

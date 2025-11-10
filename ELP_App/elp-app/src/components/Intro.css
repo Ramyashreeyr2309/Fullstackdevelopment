@@ -5,6 +5,10 @@
   background-color: #83e1f7;
   color: rgba(32, 22, 204, 0.927);
   margin-top: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .header {
@@ -12,82 +16,99 @@
   text-align: left;
   align-items: center;
   justify-content: center;
-    padding-left: 10px;
+  padding-left: 15px;
+  font-size: 1.2rem;
 }
+
 .headerc {
   width: 10%;
   text-align: left;
   align-items: center;
   justify-content: center;
   height: 10px;
-  padding: 0px 0px;
+  padding: 0;
 }
 
 .user-profile {
   display: flex;
   flex-direction: row;
   padding: 10px;
-  align-items: left;
-  justify-content: left;
-  border: none;
-  border-radius: 3px;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-profile:hover {
+  background-color: #f0f0f0;
 }
 
 .search-container {
-  padding: 10px 0px;
+  padding: 10px 0;
   display: flex;
   flex-direction: row;
-  border: none;
+  border: 1px solid #ccc;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
   width: 80%;
   align-items: center;
   justify-content: center;
+  transition: box-shadow 0.3s;
 }
 
-.categories{
+.search-container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.categories {
   display: flex;
   flex-direction: column;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
   width: 100%;
   align-items: center;
   justify-content: center;
 }
 
-.categories-row{
+.categories-row {
   display: flex;
   flex-direction: row;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
   width: 100%;
   align-items: center;
   justify-content: center;
 }
 
-.category-card{
+.category-card {
   width: 23%;
   height: 150px;
-  border-radius: 2px;
-  overflow: hidden; /* Ensures image corners match card corners */
+  border-radius: 5px;
+  overflow: hidden;
   margin: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: white;
-  transition: transform 0.2s;
+  transition: transform 0.3s, box-shadow 0.3s;
   text-align: center;
   white-space: normal;
-  padding-left: 2px;
+  padding: 10px;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-image {
   width: 100%;
   height: 90px;
-  object-fit: cover; /* Ensures images cover the area nicely */
+  object-fit: cover;
 }
 
-.list{
+.list {
   align-items: center;
 }
