@@ -1,40 +1,41 @@
-.category-eqcard {
+.category-eqcard, .category-rqcard {
     display: flex;
     flex-direction: row;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    /* Ensures image corners match card corners */
     margin: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for depth */
-    background-color: white;
-    transition: transform 0.2s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: #f9f9f9;
+    transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
-    padding: 10px;
+    padding: 15px;
     width: 60%;
-    align-items: right;
-    justify-content: right;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-eqcard:hover, .category-rqcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .eqbutton {
-    padding: 20px;
-
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.category-rqcard {
-    display: flex;
-    flex-direction: row;
-    border-radius: 8px;
-    overflow: hidden;
-    /* Ensures image corners match card corners */
-    margin: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for depth */
-    background-color: white;
-    transition: transform 0.2s;
-    text-align: center;
-    padding: 10px;
-    width: 60%;
-    align-items: right;
-    justify-content: right;
+.eqbutton:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.eqbutton:active {
+    background-color: #003f7f;
+    transform: scale(0.95);
 }
