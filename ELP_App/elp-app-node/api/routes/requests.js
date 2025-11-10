@@ -26,7 +26,7 @@ router.get("/admin", async (req, res, next) => {
         FROM req_management as r
         join equipments as e on r.eid=e.eqid
         join user_names as u on r.usid = u.user_id
-        where e.aid = ? 
+        where (e.aid = ? and r.approval_status!='reject' and (r.return_status is null or r.return_status != 'returned'))
         order by reqtime desc
         `, [user.user_id], (error, results) => {
         if (error) {
@@ -46,7 +46,7 @@ router.get("/user", async (req, res, next) => {
         return;
     }
     db.query(`SELECT 
-            r.rqid, r.usid, r.reqtime, r.eid, r.approval_status, r.return_status, r.rettime, e.ename, e.availability, e.aid, u.name as approver
+            r.rqid, r.usid, r.reqtime, r.eid, r.approval_status, COALESCE(r.return_status, 'Not Returned') as return_status, r.rettime, e.ename, e.availability, e.aid, u.name as approver
         FROM req_management as r
         join equipments as e on r.eid=e.eqid
         join user_names as u on e.aid = u.user_id

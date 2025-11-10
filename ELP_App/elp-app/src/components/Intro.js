@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Intro.css';
 import Header from './Header';
+import Helper from './Helper';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -24,7 +25,7 @@ const Intro = () => {
         availability: null,
         ecndtn: null
       };
-      const data = await getEquipmentsData(token, equipmentDetails);
+      const data = await Helper.getEquipmentsData(token, equipmentDetails);
       navigate('/equipmentlist', { state: data });
     } catch (error) {
       console.error('Error logging out:', error);
@@ -47,7 +48,7 @@ const Intro = () => {
         availability: availability,
         ecndtn: null
       };
-      const data = await getEquipmentsData(token, equipmentDetails);
+      const data = await Helper.getEquipmentsData(token, equipmentDetails);
       navigate('/equipmentlist', { state: data });
     } catch (error) {
       console.error('Error logging out:', error);
@@ -76,8 +77,15 @@ const Intro = () => {
   };
   const onClickrequest = async (e) => {
     e.preventDefault();
-    console.log('clicked on request');
-    navigate('/requestlist');
+    try {
+      console.log('clicked on request');
+      const data = await Helper.getRequestdata(token);
+      const admindata = (role === 'admin') ? await Helper.getRequestdataforadmin(token) : [];
+      navigate('/requestlist', { state: { data: data, admindata: admindata } });
+    } catch (error) {
+      console.error('Error logging out:', error);
+      setError('An error occurred. Please try again.');
+    }
   };
   const onClickcard = async (category) => {
     try {
@@ -88,7 +96,7 @@ const Intro = () => {
         availability: null,
         ecndtn: null
       };
-      const data = await getEquipmentsData(token, equipmentDetails);
+      const data = await Helper.getEquipmentsData(token, equipmentDetails);
       navigate('/equipmentlist', { state: data });
     } catch (error) {
       console.error('Error logging out:', error);
@@ -161,27 +169,5 @@ const Intro = () => {
 
 
 };
-
-const getEquipmentsData = async (token, equipmentDetails) => {
-  try {
-    console.log('started');
-    const response = await fetch('http://localhost:4000/equipments/details?token=' + token, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(equipmentDetails)
-    });
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    } else {
-      throw new Error('Error getting equipment list');
-    }
-  } catch (error) {
-    console.error('Error getting equipment list:', error);
-    throw error;
-  }
-}
 
 export default Intro;

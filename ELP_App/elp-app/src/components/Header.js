@@ -45,7 +45,7 @@ const Header = (title) => {
 
     return (
         <div className="intro-page-heading">
-            <div class="header">
+            <div className="header">
                 <h1>{title}</h1>
             </div>
             <div className="user-profile">

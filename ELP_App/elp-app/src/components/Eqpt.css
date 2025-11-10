@@ -20,3 +20,21 @@
     padding: 20px;
 
 }
+
+.category-rqcard {
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Ensures image corners match card corners */
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    background-color: white;
+    transition: transform 0.2s;
+    text-align: center;
+    padding: 10px;
+    width: 60%;
+    align-items: right;
+    justify-content: right;
+}
