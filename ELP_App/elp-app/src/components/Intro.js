@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Intro.css';
+import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -14,42 +15,6 @@ const Intro = () => {
   const [query, setQuery] = useState('');
   const [avail, setAvail] = useState('');
 
-  useEffect(() => {
-    if (token == null) {
-      console.log('redirecting to login page');
-      navigate('/login');
-    }
-  }, [token, navigate]
-  );
-
-  const onLogout = () => {
-    sessionStorage.setItem('token', null);
-    sessionStorage.setItem('role', null);
-    sessionStorage.setItem('userid', null);
-    sessionStorage.setItem('uname', null);
-  };
-  const handleLogout = async (e) => {
-    e.preventDefault();
-    try {
-      console.log('started');
-      const response = await fetch('http://localhost:4000/user/session/current?token=' + token, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      if (response.ok) {
-        onLogout();
-        navigate('/login'); // Redirect to login page upon successful logout
-      } else {
-        setError(response.status);
-      }
-    } catch (error) {
-      console.error('Error logging out:', error);
-      setError('An error occurred. Please try again.');
-    }
-  };
-
   const handleListAll = async (e) => {
     e.preventDefault();
     try {
@@ -59,7 +24,7 @@ const Intro = () => {
         availability: null,
         ecndtn: null
       };
-      const data = await RedirectEquipmentPage(token, equipmentDetails);
+      const data = await getEquipmentsData(token, equipmentDetails);
       navigate('/equipmentlist', { state: data });
     } catch (error) {
       console.error('Error logging out:', error);
@@ -82,7 +47,7 @@ const Intro = () => {
         availability: availability,
         ecndtn: null
       };
-      const data = await RedirectEquipmentPage(token, equipmentDetails);
+      const data = await getEquipmentsData(token, equipmentDetails);
       navigate('/equipmentlist', { state: data });
     } catch (error) {
       console.error('Error logging out:', error);
@@ -123,7 +88,7 @@ const Intro = () => {
         availability: null,
         ecndtn: null
       };
-      const data = await RedirectEquipmentPage(token, equipmentDetails);
+      const data = await getEquipmentsData(token, equipmentDetails);
       navigate('/equipmentlist', { state: data });
     } catch (error) {
       console.error('Error logging out:', error);
@@ -133,20 +98,7 @@ const Intro = () => {
 
   return (
     <div>
-
-      <div class="intro-page-heading">
-        <div class="header">
-          <h1>EQUIPMENT LENDING PORTAL</h1>
-        </div>
-        <div class="user-profile">
-          <h4>👤</h4>
-          <h5>{uname}</h5>
-          <button onClick={handleLogout} >
-            Logout
-          </button>
-        </div>
-
-      </div>
+      {Header('EQUIPMENT LENDING PORTAL')}
       <div className='search-container'>
         <form className="search-form" onSubmit={handleSearch}>
           <input
@@ -165,9 +117,9 @@ const Intro = () => {
           <button type="submit" className="search-button">
             Search
           </button>
-            <button className="search-button" onClick={handleListAll}>
-              List All
-            </button>
+          <button className="search-button" onClick={handleListAll}>
+            List All
+          </button>
         </form>
       </div>
       <div>
@@ -210,7 +162,7 @@ const Intro = () => {
 
 };
 
-const RedirectEquipmentPage = async (token, equipmentDetails) => {
+const getEquipmentsData = async (token, equipmentDetails) => {
   try {
     console.log('started');
     const response = await fetch('http://localhost:4000/equipments/details?token=' + token, {

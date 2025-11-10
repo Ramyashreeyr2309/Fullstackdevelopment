@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Intro from './components/Intro';
 import Equipmentlist from './components/Equipmentlist';
 import Requestlist from './components/Requestlist';
+import Equipmentdetail from './components/Equipmentdetail';
 
 function App() {
   const handleLogin = (user) => {
@@ -21,7 +22,8 @@ function App() {
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/intro" element={<Intro/>} /> 
           <Route path="/equipmentlist" element={<Equipmentlist/>} /> 
-          <Route path="/requestlist" element={<Requestlist/>} /> 
+          <Route path="/requestlist" element={<Requestlist/>} />
+          <Route path="/equipment/details" element={<Equipmentdetail/>} /> 
           {/* Add more routes for other pages if needed */}
         </Routes>
       </div>
