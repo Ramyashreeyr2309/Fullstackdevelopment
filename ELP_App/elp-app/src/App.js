@@ -1,6 +1,6 @@
 // App.js
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes,} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Intro from './components/Intro';
 import Equipmentlist from './components/Equipmentlist';
@@ -19,11 +19,14 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+          {/* Root redirect to login to give a clear default entrypoint */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/intro" element={<Intro/>} /> 
           <Route path="/equipmentlist" element={<Equipmentlist/>} /> 
           <Route path="/requestlist" element={<Requestlist/>} />
-          <Route path="/equipment/details" element={<Equipmentdetail/>} /> 
+          {/* Use an id param for equipment details so components can load by id: /equipment/123 */}
+          <Route path="/equipment/:id" element={<Equipmentdetail/>} />
           {/* Add more routes for other pages if needed */}
         </Routes>
       </div>
