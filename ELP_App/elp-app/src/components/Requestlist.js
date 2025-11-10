@@ -117,11 +117,11 @@ const Requestlist = () => {
             {data.map((item, index) => (
                 <div key={index}>
                     <div className='category-rqcard'>
-                        <div className='header'><h6>{item.rqid}</h6></div>
-                        <div className='header'><h6>{item.ename}</h6></div>
-                        <div className='header'><h6>{item.approval_status}</h6></div>
-                        <div className='header'><h6>{item.return_status}</h6></div>
-                        <div className='header'><h6>{item.approver}</h6></div>
+                        <div className='header'><h4>{item.rqid}</h4></div>
+                        <div className='header'><h4>{item.ename}</h4></div>
+                        <div className='header'><h4>{item.approval_status}</h4></div>
+                        <div className='header'><h4>{item.return_status}</h4></div>
+                        <div className='header'><h4>{item.approver}</h4></div>
                         <div>
                         </div>
                     </div>
@@ -133,11 +133,11 @@ const Requestlist = () => {
             {admindata.map((item, index) => (
                 <div key={index}>
                     <div className='category-rqcard'>
-                        <div className='header'><h6>{item.rqid}</h6></div>
-                        <div className='header'><h6>{item.ename}</h6></div>
-                        <div className='header'><h6>{item.approval_status}</h6></div>
-                        <div className='header'><h6>{item.return_status}</h6></div>
-                        <div className='header'><h6>{item.requestor}</h6></div>
+                        <div className='header'><h4>{item.rqid}</h4></div>
+                        <div className='header'><h4>{item.ename}</h4></div>
+                        <div className='header'><h4>{item.approval_status}</h4></div>
+                        <div className='header'><h4>{item.return_status}</h4></div>
+                        <div className='header'><h4>{item.requestor}</h4></div>
                         {manageComponent(item)}
                     </div>
                 </div>

@@ -142,7 +142,7 @@ const Equipmentlist = () => {
                 {data.map((item, index) => (
                     <div key={index}>
                         <div className='category-eqcard'>
-                            <div className='header'><h6>{item.ename}</h6></div>
+                            <div className='header'><h3>{item.ename} ({item.category})</h3></div>
                             <div className='eqbutton'>
                                 {<button onClick={() => handleReq(item.eqid)} >
                                     REQUEST

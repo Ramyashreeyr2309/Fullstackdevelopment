@@ -116,11 +116,11 @@ const Intro = () => {
             className="search-input"
             onChange={(e) => setQuery(e.target.value)} required
           />
-          Availability:<select name="availability" id="availability" onChange={(e) => setAvail(e.target.value)} required>
+          ‎ Availability: <select name="availability" id="availability" onChange={(e) => setAvail(e.target.value)} required>
             <option value="all">All</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
-          </select>
+          </select>≔
           <br></br>
           <button type="submit" className="search-button">
             Search
