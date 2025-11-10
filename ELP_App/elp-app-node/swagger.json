@@ -1,0 +1,223 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "ELP App API",
+    "description": "API documentation for the ELP App"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/equipments/details": {
+      "post": {
+        "summary": "Get equipment details",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Authentication token"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "category": { "type": "string" },
+                "ename": { "type": "string" },
+                "availability": { "type": "boolean" },
+                "ecndtn": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "type": "array",
+              "items": { "type": "object" }
+            }
+          },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/equipments": {
+      "post": {
+        "summary": "Add new equipment",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Authentication token"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ename": { "type": "string" },
+                "category": { "type": "string" },
+                "ecndtn": { "type": "string" },
+                "quantity": { "type": "integer" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Equipment added successfully" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/equipments/{eqid}": {
+      "patch": {
+        "summary": "Update equipment",
+        "parameters": [
+          {
+            "name": "eqid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Equipment ID"
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Authentication token"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ename": { "type": "string" },
+                "category": { "type": "string" },
+                "ecndtn": { "type": "string" },
+                "new_quantity": { "type": "integer" },
+                "old_quantity": { "type": "integer" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Equipment updated successfully" },
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "delete": {
+        "summary": "Delete equipment",
+        "parameters": [
+          {
+            "name": "eqid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Equipment ID"
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Authentication token"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Equipment deleted successfully" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/requests/admin": {
+      "get": {
+        "summary": "Get admin requests",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Authentication token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "type": "array",
+              "items": { "type": "object" }
+            }
+          },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/user/session": {
+      "post": {
+        "summary": "Authenticate user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userid": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": { "type": "string" },
+                "token": { "type": "string" },
+                "userid": { "type": "string" },
+                "role": { "type": "string" },
+                "name": { "type": "string" }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/user/session/current": {
+      "delete": {
+        "summary": "Logout user",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Authentication token"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Logout successful" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    }
+  }
+}

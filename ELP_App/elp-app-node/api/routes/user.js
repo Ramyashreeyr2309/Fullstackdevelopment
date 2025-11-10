@@ -2,6 +2,55 @@ const express = require("express");
 const router = express.Router();
 const db = require('../../dbconfig.js'); // Import the connection pool
 
+/**
+ * API Documentation: user.js
+ *
+ * POST /session
+ * Description: Authenticates a user and generates a session token.
+ *
+ * Request Body:
+ * {
+ *   "userid": "string",       // User ID of the user
+ *   "password": "string"      // Password of the user
+ * }
+ *
+ * Response:
+ *   200 OK (Login successful)
+ *   {
+ *     "message": "Login successful",
+ *     "token": "string",      // Generated session token
+ *     "userid": "string",     // User ID
+ *     "role": "string",       // Role of the user (e.g., admin, user)
+ *     "name": "string"        // Name of the user
+ *   }
+ *
+ *   401 Unauthorized (Invalid credentials)
+ *
+ * Error Handling:
+ *   Logs errors to the console if the database query fails.
+ *
+ * DELETE /session/current
+ * Description: Logs out the current user by invalidating their session token.
+ *
+ * Query Parameters:
+ *   token (string): The session token to be invalidated.
+ *
+ * Response:
+ *   200 OK (Logout successful)
+ *   401 Unauthorized (If the token is invalid)
+ *
+ * Error Handling:
+ *   Logs errors to the console if the database query fails.
+ *
+ * Utility Functions:
+ * 1. generateRandomText(length)
+ *    - Generates a random alphanumeric string of the specified length.
+ *    - Used to create unique session tokens.
+ *
+ * 2. insertNewUserToken(userid, token)
+ *    - Updates the users table to store the generated session token for the specified user.
+ */
+
 router.post("/session", (req, res, next) => {
   const userid = req.body.userid;
   const inputpassword = req.body.password;
